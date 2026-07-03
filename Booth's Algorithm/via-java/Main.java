@@ -46,12 +46,18 @@ public class Main {
             itr++;
             count--;
         }
-        // String StringAQ=
+
+        String StringAQ = toBinary(accumulator, 5) + toBinary(multiplier, 5);
+        int result = Integer.parseInt(StringAQ, 2);
+        if (StringAQ.charAt(0) == '1') {
+            result -= (1 << StringAQ.length());
+        }
+        System.out.println("\nResult: " + toBinary(result, StringAQ.length()) + "(bin)  |  " + result + "(dec)");
 
     }
 
     private static String toBinary(int value, int width) {
-        String s = Integer.toBinaryString(value & ((1 << width) - 1)); // mask to width bits
+        String s = Integer.toBinaryString(value & ((1 << width) - 1));
         return String.format("%" + width + "s", s).replace(' ', '0');
     }
 
@@ -65,6 +71,11 @@ public class Main {
                 "Multiplicand(M)", "Count", "Comment");
 
         System.out.println("-".repeat(100));
+    }
+
+    private static void showResult(String bin, int res) {
+        System.out.println("Result:");
+        System.out.printf("Bin: %-15s %nInt: %-10d%n", bin, res);
     }
 
 }
