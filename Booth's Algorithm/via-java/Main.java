@@ -1,17 +1,21 @@
 
 public class Main {
     private static int accumulator = 0;
-    private static int multiplier = 15;
-    private static int multiplicant = -12;
+    private static int multiplier = 13;
+    private static int multiplicant = -13;
     private static int count = 5;
     private static int Q_1 = 0;
     private static String comment = "initialize";
-    private static int itr = 0;
+    private static int itr = 1;
 
     public static void main(String[] args) {
         while (count != 0) {
+            String A_bin = toBinary(accumulator, 5);
+            String Q_bin = toBinary(multiplier, 5);
+            String Q1_bin = toBinary(Q_1, 1);
             if (count == 5) {
                 header();
+                display(0, A_bin, Q_bin, Q1_bin, toBinary(multiplicant, 5), count, comment);
             }
             int Q_0 = multiplier & 1;
             if (Q_0 == 1 && Q_1 == 0) {
@@ -23,9 +27,6 @@ public class Main {
             } else {
                 comment = "A = A";
             }
-            String A_bin = toBinary(accumulator, 5);
-            String Q_bin = toBinary(multiplier, 5);
-            String Q1_bin = toBinary(Q_1, 1);
 
             String combined = A_bin + Q_bin + Q1_bin;
             int combinedInt = Integer.parseInt(combined, 2);
