@@ -16,6 +16,7 @@ public class Main {
 
         inputData();
         width = Math.max(minBits(multiplier), minBits(multiplicant));
+        count = width;
         while (count != 0) {
             if (count == 5) {
                 header();
