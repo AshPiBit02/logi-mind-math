@@ -2,7 +2,7 @@
 public class Main {
     private static int accumulator = 0;
     private static int multiplier = 13;
-    private static int multiplicant = -13;
+    private static int multiplicant = -11;
     private static int count = 5;
     private static int Q_1 = 0;
     private static String comment = "initialize";
@@ -10,12 +10,10 @@ public class Main {
 
     public static void main(String[] args) {
         while (count != 0) {
-            String A_bin = toBinary(accumulator, 5);
-            String Q_bin = toBinary(multiplier, 5);
-            String Q1_bin = toBinary(Q_1, 1);
             if (count == 5) {
                 header();
-                display(0, A_bin, Q_bin, Q1_bin, toBinary(multiplicant, 5), count, comment);
+                display(0, toBinary(accumulator, 5), toBinary(multiplier, 5), toBinary(Q_1, 1),
+                        toBinary(multiplicant, 5), count, comment);
             }
             int Q_0 = multiplier & 1;
             if (Q_0 == 1 && Q_1 == 0) {
@@ -27,12 +25,15 @@ public class Main {
             } else {
                 comment = "A = A";
             }
+            String A_bin = toBinary(accumulator, 5);
+            String Q_bin = toBinary(multiplier, 5);
+            String Q1_bin = toBinary(Q_1, 1);
 
-            String combined = A_bin + Q_bin + Q1_bin;
-            int combinedInt = Integer.parseInt(combined, 2);
-            combinedInt >>= 1;
+            String signBit = A_bin.substring(0, 1); // preserve sign of A
+            String combined = signBit + A_bin + Q_bin + Q1_bin; // 12 bits: sign+A+
+
             comment += " , ARS";
-            combined = toBinary(combinedInt, 11);
+            combined = combined.substring(0, combined.length() - 1);
 
             String A = combined.substring(0, 5);
             String Q = combined.substring(5, 10);
@@ -45,6 +46,7 @@ public class Main {
             itr++;
             count--;
         }
+        // String StringAQ=
 
     }
 
