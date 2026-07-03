@@ -6,9 +6,13 @@ public class Main {
     private static int count = 5;
     private static int Q_1 = 0;
     private static String comment = "initialize";
+    private static int itr = 0;
 
     public static void main(String[] args) {
         while (count != 0) {
+            if (count == 5) {
+                header();
+            }
             int Q_0 = multiplier & 1;
             if (Q_0 == 1 && Q_1 == 0) {
                 accumulator -= multiplicant;
@@ -33,10 +37,11 @@ public class Main {
             String Q = combined.substring(5, 10);
             String Q1 = combined.substring(10);
 
-            display(A, Q, Q1, toBinary(multiplicant, 5), count, comment);
+            display(itr, A, Q, Q1, toBinary(multiplicant, 5), count, comment);
             accumulator = Integer.parseInt(A, 2);
             multiplier = Integer.parseInt(Q, 2);
             Q_1 = Integer.parseInt(Q1, 2);
+            itr++;
             count--;
         }
 
@@ -47,7 +52,16 @@ public class Main {
         return String.format("%" + width + "s", s).replace(' ', '0');
     }
 
-    private static void display(String A, String Q, String Q_1, String M, int count, String comment) {
-        System.out.printf("%-10s %-10s %-5s %-10s %-5d %-10s%n", A, Q, Q_1, M, count, comment);
+    private static void display(int itr, String A, String Q, String Q_1, String M, int count, String comment) {
+        System.out.printf("%-10d %-15s %-15s %-10s %-18s %-10d %-15s%n", itr, A, Q, Q_1, M, count, comment);
     }
+
+    private static void header() {
+        System.out.printf("%-10s %-15s %-15s %-10s %-18s %-10s %-15s%n", "Iteration", "Accumulator(A)", "Multiplier(Q)",
+                "Q_1",
+                "Multiplicand(M)", "Count", "Comment");
+
+        System.out.println("-".repeat(100));
+    }
+
 }
