@@ -19,24 +19,32 @@ public class Main {
             } else {
                 comment = "A = A";
             }
-            int combinedInt = Integer.parseInt(Integer.toBinaryString(accumulator)
-                    + Integer.toBinaryString(multiplier) + Integer.toBinaryString(Q_1), 2);
-            combinedInt = combinedInt >> 1;
-            comment += " , ARS";
+            String A_bin = toBinary(accumulator, 5);
+            String Q_bin = toBinary(multiplier, 5);
+            String Q1_bin = toBinary(Q_1, 1);
 
-            String combined = Integer.toBinaryString(combinedInt);
+            String combined = A_bin + Q_bin + Q1_bin;
+            int combinedInt = Integer.parseInt(combined, 2);
+            combinedInt >>= 1;
+            comment += " , ARS";
+            combined = toBinary(combinedInt, 11);
 
             String A = combined.substring(0, 5);
             String Q = combined.substring(5, 10);
             String Q1 = combined.substring(10);
 
-            display(A, Q, Q1, Integer.toBinaryString(multiplicant), count, comment);
+            display(A, Q, Q1, toBinary(multiplicant, 5), count, comment);
             accumulator = Integer.parseInt(A, 2);
             multiplier = Integer.parseInt(Q, 2);
             Q_1 = Integer.parseInt(Q1, 2);
             count--;
         }
 
+    }
+
+    private static String toBinary(int value, int width) {
+        String s = Integer.toBinaryString(value & ((1 << width) - 1)); // mask to width bits
+        return String.format("%" + width + "s", s).replace(' ', '0');
     }
 
     private static void display(String A, String Q, String Q_1, String M, int count, String comment) {
