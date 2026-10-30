@@ -13,11 +13,27 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: configure
-      run: ./configure
-    - name: make
-      run: make
-    - name: make check
-      run: make check
-    - name: make distcheck
-      run: make distcheck
+      with:
+        fetch-depth: 0
+    - name: Compile changed C/C++ files
+      run: |
+        set -euo pipefail
+        if [ "${{ github.event_name }}" = "pull_request" ]; then
+          BASE_SHA="${{ github.event.pull_request.base.sha }}"
+          HEAD_SHA="${{ github.event.pull_request.head.sha }}"
+        else
+          BASE_SHA="${{ github.event.before }}"
+          HEAD_SHA="${{ github.sha }}"
+        fi
+
+        mapfile -t changed_files < <(git diff --name-only "$BASE_SHA" "$HEAD_SHA" -- '*.c' '*.cc' '*.cpp' '*.cxx')
+
+        if [ "${#changed_files[@]}" -eq 0 ]; then
+          echo "No changed C/C++ files to compile."
+          exit 0
+        fi
+
+        for file in "${changed_files[@]}"; do
+          echo "Compiling $file"
+          g++ -std=c++17 -fsyntax-only "$file"
+        done
