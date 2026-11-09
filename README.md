@@ -1,45 +1,49 @@
 # Logi Mind Math
 
-`logi-mind-math` is a hands-on collection of data structures, algorithms, problem-solving exercises, and numerical-method experiments. The repository is primarily written in C++ and is intended for learning, practice, exam preparation, and strengthening algorithmic thinking.
+`logi-mind-math` is a collection of standalone programming exercises for practicing data structures, algorithms, mathematical problem solving, and numerical methods. Most examples are written in C++, with one Java implementation and three Jupyter notebooks.
 
-## What You'll Find
+## Topics
 
-- **[Arrays](./arrays/)** — Searching, sorting, two-pointer techniques, prefix sums, subarrays, matrix problems, partitioning, and sliding-window exercises.
-- **[Linked Lists](./Linked%20List/)** — Singly, doubly, circular, multilevel, and random-pointer linked-list operations.
-- **[Recursion & Backtracking](./Recursion%26Backtracking/)** — Permutations, subsets, sorting, maze problems, Sudoku, N-Queens, string partitioning, and other recursive solutions.
-- **[Strings](./strings/)** — Palindromes, anagrams, subsequences, permutations, string transformations, and character-processing problems.
-- **[Mathematical Algorithms](./cmath/)** — GCD, prime counting, powers, number reversal, Josephus problems, XOR techniques, and other mathematical utilities.
-- **[Binary Number System](./Binary%20Number%20System/)** — Decimal/binary conversion exercises.
-- **[Booth's Algorithm](./Booth's%20Algorithm/)** — A Java implementation of Booth's multiplication algorithm.
-- **[Numerical Methods](./Numerical%20Methods/)** — Jupyter notebooks demonstrating the bisection, Newton–Raphson, and secant methods.
+- **[Arrays](./arrays/)** — Searching, sorting, subarrays, prefix sums, matrix traversal, permutations, greedy problems, and sliding-window techniques.
+- **[Linked List](./Linked%20List/)** — Singly, doubly, circular, multilevel, and random-pointer linked lists.
+- **[Recursion & Backtracking](./Recursion%26Backtracking/)** — Merge sort, quicksort, permutations, subsets, maze solving, Sudoku, N-Queens, Knight's Tour, and word search.
+- **[Strings](./strings/)** — Anagrams, palindromes, subsequences, permutations, word reversal, and character processing.
+- **[Mathematical Algorithms](./cmath/)** — GCD, prime counting, happy numbers, number reversal, XOR operations, and Josephus problems.
+- **[Binary Number System](./Binary%20Number%20System/)** — Decimal-to-binary and binary-to-decimal conversion.
+- **[Booth's Algorithm](./Booth%27s%20Algorithm/)** — A Java implementation of Booth's multiplication algorithm.
+- **[Numerical Methods](./Numerical%20Methods/)** — Jupyter notebooks for the bisection, Newton–Raphson, and secant methods.
 
-## Repository Layout
+## Repository Structure
 
 ```text
 logi-mind-math/
 ├── arrays/
 ├── Binary Number System/
-├── Booth's Algorithm/
+├── Booth's Algorithm/via-java/
 ├── cmath/
 ├── Linked List/
 ├── Numerical Methods/
+│   ├── Bisection Method/
+│   ├── Newton-Rhapson Method/
+│   └── Secant Method/
 ├── Recursion&Backtracking/
+│   ├── Stage0/
+│   └── Stage1/
 ├── strings/
-├── .github/workflows/
-└── LICENSE
+└── .github/workflows/
 ```
 
-Most C++ files are standalone programs focused on one problem or technique. The repository also contains generated executables alongside several source files, while the numerical-method examples are provided as Jupyter notebooks.
+Each source file is focused on a single exercise and generally contains its own `main` function. There is no shared application or build system. The repository also includes some precompiled Windows `.exe` files; compiling from source is recommended for portability.
 
-## Getting Started
+## Requirements
 
-### Prerequisites
-
-- A C++ compiler supporting C++11 or later, such as `g++` or `clang++`
-- Java, if running the Booth's Algorithm example
+- A C++ compiler such as `g++` or `clang++`
+- Java Development Kit (JDK) for the Booth's Algorithm example
 - Jupyter Notebook or JupyterLab for the numerical-method notebooks
 
-### Compile and Run a C++ Example
+## Usage
+
+### Compile a C++ example
 
 From the repository root:
 
@@ -48,21 +52,27 @@ g++ -std=c++17 arrays/twosum.cpp -o twosum
 ./twosum
 ```
 
-Replace the source path and output name with the example you want to explore. Some programs may expect input from standard input; check the source file for its input format.
+Replace `arrays/twosum.cpp` with any C++ source file. Examples may use different input formats, so review the selected source file before running it.
 
-### Explore Numerical Methods
+### Run the Java example
 
-Start Jupyter from the repository root:
+```bash
+cd "Booth's Algorithm/via-java"
+javac Main.java
+java Main
+```
+
+### Open the numerical-method notebooks
 
 ```bash
 jupyter notebook
 ```
 
-Then open a notebook under [`Numerical Methods`](./Numerical%20Methods/).
+Then open a notebook in [`Numerical Methods`](./Numerical%20Methods/).
 
-## Learning Notes
+## Continuous Integration
 
-The examples are independent practice programs rather than a single application. They may use different input conventions and levels of completeness, so read each source file before compiling or adapting it. The precompiled binaries are platform-specific; compiling from source is recommended for your environment.
+The GitHub Actions workflow in [`.github/workflows/c-cpp.yml`](./.github/workflows/c-cpp.yml) compiles changed C and C++ files with `g++ -std=c++17 -fsyntax-only` on pushes and pull requests targeting `main`.
 
 ## License
 
