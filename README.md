@@ -1,6 +1,6 @@
 # Logi Mind Math
 
-`logi-mind-math` is a collection of standalone programming exercises for practicing data structures, algorithms, mathematical problem solving, and numerical methods. Most examples are written in C++, with one Java implementation and three Jupyter notebooks.
+`logi-mind-math` is a collection of 100+ standalone programming exercises for practicing data structures, algorithms, mathematical problem solving, and numerical methods. Most examples are written in C++, with one Java implementation and three Jupyter notebooks.
 
 ## Topics
 
@@ -12,6 +12,8 @@
 - **[Binary Number System](./Binary%20Number%20System/)** — Decimal-to-binary and binary-to-decimal conversion.
 - **[Booth's Algorithm](./Booth%27s%20Algorithm/)** — A Java implementation of Booth's multiplication algorithm.
 - **[Numerical Methods](./Numerical%20Methods/)** — Jupyter notebooks for the bisection, Newton–Raphson, and secant methods.
+
+The repository also includes a standalone circular linked-list solution for the Josephus problem at the project root.
 
 ## Repository Structure
 
@@ -33,7 +35,7 @@ logi-mind-math/
 └── .github/workflows/
 ```
 
-Each source file is focused on a single exercise and generally contains its own `main` function. There is no shared application or build system. The repository also includes some precompiled Windows `.exe` files; compiling from source is recommended for portability.
+Each source file is focused on a single exercise and generally contains its own `main` function. There is no shared application or build system, so examples can be explored independently. The repository includes precompiled Windows `.exe` files alongside many sources; compiling from source is recommended for portability.
 
 ## Requirements
 
@@ -52,7 +54,7 @@ g++ -std=c++17 arrays/twosum.cpp -o twosum
 ./twosum
 ```
 
-Replace `arrays/twosum.cpp` with any C++ source file. Examples may use different input formats, so review the selected source file before running it.
+Replace `arrays/twosum.cpp` with any C++ source file. Examples may use different input formats, so review the selected source file before running it. To avoid cluttering the repository, place locally built binaries outside the source directory or add an output name that is ignored by your local workflow.
 
 ### Run the Java example
 
